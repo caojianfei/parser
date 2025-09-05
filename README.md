@@ -27,7 +27,7 @@
 
 ```bash
 go mod init your-project
-go get github.com/resdownload/video-parser-sdk
+go get github.com/caojianfei/parser
 ```
 
 ## 快速开始
@@ -51,11 +51,11 @@ func main() {
     sdk := videosdk.NewSDK()
     
     // 注册抖音解析器
-    douyinParser := parsers.NewDouyinParser("http://your-api-host")
+    douyinParser := parsers.NewDouyinParser("http://localhost:5555")
     sdk.RegisterParser(douyinParser)
     
     // 注册快手解析器
-    kuaishouParser := parsers.NewKuaishouParser("http://localhost:5555")
+    kuaishouParser := parsers.NewKuaishouParser("http://localhost:5557")
     sdk.RegisterParser(kuaishouParser)
     
     // 注册小红书解析器
