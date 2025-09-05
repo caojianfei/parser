@@ -7,8 +7,8 @@ import (
 	"log"
 	"time"
 
-	videosdk "github.com/resdownload/video-parser-sdk"
-	"github.com/resdownload/video-parser-sdk/parsers"
+	videosdk "github.com/caojianfei/parser"
+	"github.com/caojianfei/parser/parsers"
 )
 
 func main() {
@@ -44,24 +44,26 @@ func main() {
 	fmt.Printf("支持的平台: %v\n\n", platforms)
 
 	// 示例1: 解析抖音视频（使用作品ID）
-	fmt.Println("=== 示例1: 解析抖音视频（使用作品ID） ===")
-	parseDouyinByID(sdk)
+	//fmt.Println("=== 示例1: 解析抖音视频（使用作品ID） ===")
+	//parseDouyinByID(sdk)
 
 	// 示例2: 解析抖音视频（使用分享链接，三步流程）
 	fmt.Println("\n=== 示例2: 解析抖音视频（使用分享链接） ===")
 	parseDouyinByURL(sdk)
-	//
-	//// 示例3: 解析快手视频（直接URL解析）
-	fmt.Println("\n=== 示例3: 解析快手视频（直接URL解析） ===")
-	parseKuaishou(sdk)
 
-	// 示例4: 解析小红书内容（直接URL解析）
-	fmt.Println("\n=== 示例4: 解析小红书内容（直接URL解析） ===")
-	parseXiaohongshu(sdk)
+	/*
+		// 示例3: 解析快手视频（直接URL解析）
+		fmt.Println("\n=== 示例3: 解析快手视频（直接URL解析） ===")
+		parseKuaishou(sdk)
 
-	// 示例5: 批量解析不同平台的视频
-	fmt.Println("\n=== 示例5: 批量解析 ===")
-	batchParse(sdk)
+		// 示例4: 解析小红书内容（直接URL解析）
+		fmt.Println("\n=== 示例4: 解析小红书内容（直接URL解析） ===")
+		parseXiaohongshu(sdk)
+
+		// 示例5: 批量解析不同平台的视频
+		fmt.Println("\n=== 示例5: 批量解析 ===")
+		batchParse(sdk)
+	*/
 
 	// 显示使用说明
 	fmt.Println("\n=== 使用说明 ===")
@@ -102,9 +104,9 @@ func parseDouyinByID(sdk videosdk.SDK) {
 func parseDouyinByURL(sdk videosdk.SDK) {
 	req := &videosdk.ParseRequest{
 		Platform: videosdk.PlatformDouyin,
-		URL:      "", // 抖音分享短链接
-		Cookie:   "", // 实际使用时需要提供有效的抖音cookie
-		Proxy:    "", // 可选的代理设置
+		URL:      "https://v.douyin.com/uj2JiAxf7h4/", // 抖音分享短链接
+		Cookie:   "",                                  // 实际使用时需要提供有效的抖音cookie
+		Proxy:    "",                                  // 可选的代理设置
 		Source:   false,
 	}
 

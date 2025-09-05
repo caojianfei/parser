@@ -42,8 +42,8 @@ import (
     "fmt"
     "log"
     
-    videosdk "github.com/resdownload/video-parser-sdk"
-    "github.com/resdownload/video-parser-sdk/parsers"
+    videosdk "github.com/caojianfei/parser"
+    "github.com/caojianfei/parser/parsers"
 )
 
 func main() {
@@ -260,7 +260,7 @@ package parsers
 
 import (
     "context"
-    videosdk "github.com/resdownload/video-parser-sdk"
+    videosdk "github.com/caojianfei/parser"
 )
 
 type NewPlatformParser struct {

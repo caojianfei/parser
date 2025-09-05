@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
+	videosdk "github.com/caojianfei/parser"
 	"github.com/go-resty/resty/v2"
-	videosdk "github.com/resdownload/video-parser-sdk"
 	"github.com/tidwall/gjson"
 )
 
