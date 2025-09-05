@@ -1,4 +1,4 @@
-module github.com/resdownload/video-parser-sdk
+module github.com/caojianfei/parser
 
 go 1.21
 
