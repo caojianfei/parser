@@ -42,6 +42,7 @@ func (p *DouyinParser) ExtractVideoID(url string) (string, error) {
 	patterns := []string{
 		`https?://www\.douyin\.com/video/(\d+)`,
 		`https?://www\.iesdouyin\.com/share/video/(\d+)`,
+		`https?://www\.douyin\.com/note/(\d+)`, // 支持note格式链接
 	}
 
 	for _, pattern := range patterns {
