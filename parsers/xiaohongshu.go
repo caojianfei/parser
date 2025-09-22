@@ -88,7 +88,7 @@ func (p *XiaohongshuParser) ParseVideo(ctx context.Context, req *videosdk.ParseR
 	resp, err := p.client.R().
 		SetContext(ctx).
 		SetBody(requestBody).
-		Post(p.baseURL + "/xhs/")
+		Post(p.baseURL + "/xhs/detail")
 
 	if err != nil {
 		return nil, fmt.Errorf("请求失败: %v", err)
