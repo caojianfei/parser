@@ -243,7 +243,7 @@ func (p *XiaohongshuParser) parseVideoData(data []byte) (*videosdk.VideoInfo, er
 		if url != "" {
 			downloads = append(downloads, videosdk.DownloadItem{
 				URL:  url,
-				Type: videosdk.MediaTypeImage, // GIF作为图片类型
+				Type: videosdk.MediaTypeVideo, // GIF作为图片类型
 			})
 		}
 	}
