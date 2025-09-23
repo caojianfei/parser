@@ -96,7 +96,7 @@ func (p *KuaishouParser) ParseVideo(ctx context.Context, req *videosdk.ParseRequ
 	}
 
 	// 解析响应
-	videoInfo, err := p.parseVideoData(resp.Body())
+	videoInfo, err := p.parseVideoData(resp.Body(), targetURL)
 	if err != nil {
 		return nil, fmt.Errorf("解析响应失败: %w", err)
 	}
@@ -105,18 +105,17 @@ func (p *KuaishouParser) ParseVideo(ctx context.Context, req *videosdk.ParseRequ
 }
 
 // parseVideoData 解析快手API返回的视频数据
-func (p *KuaishouParser) parseVideoData(data []byte) (*videosdk.VideoInfo, error) {
+func (p *KuaishouParser) parseVideoData(data []byte, url string) (*videosdk.VideoInfo, error) {
 	result := gjson.ParseBytes(data)
-
-	// 检查响应是否成功
-	message := result.Get("message").String()
-	if !strings.Contains(message, "成功") {
-		return nil, fmt.Errorf("API返回错误: %s", message)
-	}
 
 	videoData := result.Get("data")
 	if !videoData.Exists() {
 		return nil, errors.New("响应中缺少data字段")
+	}
+
+	downloadUrl := videoData.Get("download")
+	if !downloadUrl.Exists() {
+		return nil, errors.New("解析失败")
 	}
 
 	// 解析基本信息
@@ -125,7 +124,7 @@ func (p *KuaishouParser) parseVideoData(data []byte) (*videosdk.VideoInfo, error
 	photoType := videoData.Get("photoType").String()
 	duration := videoData.Get("duration").String()
 	coverURL := videoData.Get("coverUrl").String()
-	downloadURL := videoData.Get("download").String()
+	downloadURL := downloadUrl.String()
 	timestamp := videoData.Get("timestamp").String()
 
 	// 解析统计数据
@@ -212,7 +211,7 @@ func (p *KuaishouParser) parseVideoData(data []byte) (*videosdk.VideoInfo, error
 		Description: caption,
 		Type:        videoType,
 		Platform:    videosdk.PlatformKuaishou,
-		URL:         fmt.Sprintf("https://www.kuaishou.com/short-video/%s", videoID),
+		URL:         url,
 		CreateTime:  createTime,
 		Duration:    duration,
 		Downloads:   downloads,
