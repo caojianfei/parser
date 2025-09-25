@@ -152,9 +152,9 @@ func (p *KuaishouParser) parseVideoData(data []byte, url string) (*videosdk.Vide
 	// 确定视频类型
 	var videoType videosdk.VideoType
 	switch photoType {
-	case "视频":
+	case "Video":
 		videoType = videosdk.VideoTypeVideo
-	case "图片":
+	case "Image":
 		videoType = videosdk.VideoTypeImage
 	default:
 		videoType = videosdk.VideoTypeUnknown
